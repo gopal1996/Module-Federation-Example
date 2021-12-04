@@ -1,0 +1,19 @@
+.react {
+  width: 210mm;
+  height: 196mm;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #000;
+  margin-top: 6mm;
+  transform-origin: top;
+}
+
+.grid {
+  display: flex;
+  gap: 1rem;
+  margin: 5rem;
+}

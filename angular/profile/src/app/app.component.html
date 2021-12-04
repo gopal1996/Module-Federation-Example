@@ -1,0 +1,32 @@
+<!-- <router-outlet></router-outlet> -->
+
+<style>
+  .grid {
+    width: 210mm;
+    height: 196mm;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #000;
+    margin-top: 6mm;
+    transform-origin: top;
+  }
+</style>
+
+<div class="grid">
+  <img
+    src="https://repository-images.githubusercontent.com/24195339/87018c00-694b-11e9-8b5f-c34826306d36"
+    alt="Angular application"
+    width="350"
+  />
+  <!-- <div>Value from React App: {{ reactValue }}</div> -->
+
+  <h2>Angular Input</h2>
+  <p>It will emit the value to the react app</p>
+  <input (keyup)="onKey($event)" />
+</div>
+
+<!-- <router-outlet></router-outlet> -->
