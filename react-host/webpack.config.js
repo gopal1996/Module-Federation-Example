@@ -52,7 +52,6 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "host",
       remotes: {
-        legacy: "legacy@http://localhost:3001/remoteEntry.js",
         profile: "profile@http://localhost:4201/remoteEntry.js",
       },
       shared: {
