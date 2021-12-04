@@ -43,3 +43,17 @@ Navigate to **angular** folder and run `npm run start:profile` & `npm run start:
 ```
 <!-- <router-outlet></router-outlet> -->
 ```
+
+# Bonus
+
+you can also create module federation of any application using below command
+`npx create-mf-app`
+
+# Reference Link
+
+- [Module Federation examples](https://github.com/module-federation/module-federation-examples)
+
+- [Module Federation concept](https://webpack.js.org/concepts/module-federation/)
+- [Multi-Framework example](https://www.angulararchitects.io/en/aktuelles/multi-framework-and-version-micro-frontends-with-module-federation-the-good-the-bad-the-ugly/)
+- [Info site](https://module-federation.github.io/)
+- [Youtube playlist](https://www.youtube.com/playlist?list=PLWSiF9YHHK-DqsFHGYbeAMwbd9xcZbEWJ)
