@@ -6,21 +6,37 @@ const path = require("path");
 module.exports = {
   entry: "./src/index",
   mode: "development",
+  target: "es2020",
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers":
+        "Origin, X-Requested-With, Content-Type, Accept",
+    },
     port: 3000,
-    hot: false,
-    liveReload: false,
   },
   output: {
     publicPath: "auto",
+    filename: `app.js`,
+    module: true,
+  },
+  experiments: {
+    // The support for ES6 Moduels is experimental
+    // so we need manually enable this feature
+    outputModule: true,
   },
   devtool: "eval-source-map",
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
+  externals: {
+    react: "https://cdn.skypack.dev/react",
+    "react-dom": "https://cdn.skypack.dev/react-dom",
+  },
+  externalsType: "module",
   module: {
     rules: [
       {
@@ -51,7 +67,9 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "host",
+      library: { type: "module" },
       remotes: {
+        legacy: "http://localhost:3001/remoteEntry.js",
         profile: "profile@http://localhost:4201/remoteEntry.js",
       },
       shared: {
@@ -71,7 +89,27 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      inject: false,
+      templateContent: ({ htmlWebpackPlugin }) => `
+        <html>
+          <head>
+            ${Object.keys(htmlWebpackPlugin.files.css).map((key) => {
+              return `<link rel="stylesheet" href="${htmlWebpackPlugin.files.css[key]}" />`;
+            })}
+            <base href="/" />
+            
+          </head>
+          <body>
+            <noscript>You need to enable javascript</noscript>
+            <div id="root"></div>
+            <script src="http://localhost:3000/ngelement.js" type="module"></script>
+            <script src="http://localhost:3001/remoteEntry.js" type="module"></script>
+            ${Object.keys(htmlWebpackPlugin.files.js).map((key) => {
+              return `<script type="module" src="${htmlWebpackPlugin.files.js[key]}"></script>`;
+            })}
+          </body>
+        </html>
+      `,
     }),
   ],
 };

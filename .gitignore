@@ -46,3 +46,4 @@ Thumbs.db
 
 /angular/node_modules/
 /react-host/node_modules/
+/react-legacy/node_modules/
